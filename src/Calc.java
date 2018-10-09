@@ -19,6 +19,7 @@ public class Calc {
 	String num2 = ""; 
 	String symbol = ""; 
 	String c = ""; 
+	
 	public void createCalc()
 	{
 		Frame F = new Frame(); 
@@ -30,7 +31,7 @@ public class Calc {
 		top.setSize(300,200);
 		
 		TextField result = new TextField(); 
-		result.setSize(100, 80);
+		result.setColumns(30);
 		top.add(result); 
 
 		Panel center = new Panel();
@@ -89,6 +90,10 @@ public class Calc {
 		Button [] num = {B0, B1, B2, B3, B4, B5, B6, B7, B8, B9};
 		Button [] sign = {equal, add, multiply, divide, subtract, clear}; 
 		
+		for(Button a:num)
+		{
+			a.setBackground(Color.LIGHT_GRAY);
+		}
 		
 		for(Button b:num)
 		{
@@ -123,6 +128,7 @@ public class Calc {
 								num1 = number;
 								result.setText(titleBtn);
 								number = "";
+								symbol = titleBtn;
 								System.out.println("in the if ");
 							}
 						else if(num2 == "")
@@ -130,7 +136,6 @@ public class Calc {
 								num2 = number;
 								result.setText(titleBtn);
 								number = "";
-								symbol = titleBtn;
 								System.out.println("in second else if");
 							}
 						
@@ -140,10 +145,40 @@ public class Calc {
 							System.out.println(symbol);
 							if(symbol.equals("+"))
 								{
-									c = num1 + num2;
-									String resultC = String.valueOf(c);
-									result.setText(resultC);
+									System.out.println(symbol);
+									int c = Integer.parseInt(num1) + Integer.parseInt(num2);
+									result.setText(String.valueOf(c));
 								}
+							if(symbol.equals("-"))
+							{
+								int c = Integer.parseInt(num1) - Integer.parseInt(num2);
+								String resultC = String.valueOf(c);
+								result.setText(resultC);
+							}
+							
+							if(symbol.equals("*"))
+							{
+								int c = Integer.parseInt(num1) * Integer.parseInt(num2);
+								String resultC = String.valueOf(c);
+								result.setText(resultC);
+							}
+							
+							if(symbol.equals("/"))
+							{
+								int c = Integer.parseInt(num1) / Integer.parseInt(num2);
+								String resultC = String.valueOf(c);
+								result.setText(resultC);
+							}
+						}
+						
+						if(titleBtn.equals("Clear"))
+						{
+							num1 = "";
+							num2 = ""; 
+							number = ""; 
+							symbol = "";
+							result.setText("");
+							
 						}
 						
 						}
